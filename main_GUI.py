@@ -1,13 +1,14 @@
-from tkinter import filedialog
-from EventExtractor import EventExtractor
-import threading
 import os
-import pickle
-import traceback
 import sys
+import pickle
 import subprocess
+import threading
+import traceback
+from tkinter import filedialog, ttk
 import tkinter as tk
-from tkinter import ttk
+
+from EventExtractor import EventExtractor
+
 
 class Tooltip:
     def __init__(self, widget, text):
@@ -37,7 +38,8 @@ class Tooltip:
             self.tooltip_window.wm_geometry(f"+{x}+{y}")
 
             style = ttk.Style()
-            style.configure("Tooltip.TLabel", background="white", padding=5, relief="solid", borderwidth=0, bordercolor="gray", borderradius=5)
+            style.configure("Tooltip.TLabel", background="white", padding=5, relief="solid", borderwidth=0,
+                            bordercolor="gray", borderradius=5)
 
             label = ttk.Label(self.tooltip_window, text=self.text, style="Tooltip.TLabel")
             label.pack()
@@ -46,6 +48,8 @@ class Tooltip:
         if self.tooltip_window:
             self.tooltip_window.destroy()
             self.tooltip_window = None
+
+
 class Console(tk.Text):
     def __init__(self, *args, **kwargs):
         tk.Text.__init__(self, *args, **kwargs)
@@ -59,6 +63,8 @@ class Console(tk.Text):
 
     def flush(self):
         pass
+
+
 class App:
     def __init__(self, root):
 
@@ -68,7 +74,7 @@ Start: the start datetime of the event in the following format: YYYY-MM-DD HH:MM
 End: the end datetime of the event in the following format: YYYY-MM-DD HH:MM
 Location: The full address of the event
 City: the city the event takes place in
-Relevance: A TRUE or FALSE value linked to whether the event is relevant to climate tech or not
+Relevance: A TRUE or FALSE value linked to whether the event is relevant to climate change or not
         '''
 
         self.open_file_var = tk.BooleanVar()
@@ -94,7 +100,6 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
         self.button_output_dir = tk.Button(root, text="Browse", command=self.select_output_dir)
 
         script_dir = os.path.dirname(os.path.abspath(__file__))  # get directory of the script
-
 
         self.entry_api_key = tk.Text(root, width=width_std, height=1, highlightthickness=0)
         self.entry_city = tk.Text(root, width=width_std, height=1, highlightthickness=0)
@@ -124,7 +129,8 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
         # Add tooltips to text widgets
         city_tooltip = Tooltip(self.entry_city, "The city name(s) are a good pick")
         column_mapping_tooltip = Tooltip(self.column_mapping_text, "Enter your output column:GPT prompt for data")
-        num_rows_tooltip = Tooltip(self.entry_num_rows, "Enter the number of rows (separated by columns if you would\nlike to scrape different amounts of rows for multiple CSVs)\nand MAX if you want to scrape all rows")
+        num_rows_tooltip = Tooltip(self.entry_num_rows,
+                                   "Enter the number of rows (separated by columns if you would\nlike to scrape different amounts of rows for multiple CSVs)\nand MAX if you want to scrape all rows")
 
         self.scrollbar_column_mapping = tk.Scrollbar(root, orient=tk.HORIZONTAL, command=self.column_mapping_text.xview)
         self.open_file_var.set(False)
@@ -181,7 +187,7 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
 
                 self.column_mapping_text.delete('1.0', tk.END)
                 self.column_mapping_text.insert(tk.END,
-                self.saved_data.get('column_mapping', self.default_column_mapping))
+                                                self.saved_data.get('column_mapping', self.default_column_mapping))
 
                 self.entry_output_dir.delete('1.0', tk.END)
                 self.entry_output_dir.insert(tk.END, self.saved_data.get('output_directory', ''))
@@ -191,9 +197,12 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
 
     def load_csv_files(self):
         self.csv_display.config(state='normal')
-        initial_dir = os.path.dirname(self.csv_display.get("1.0", "end").strip()) if self.csv_display.get("1.0", "end").strip() else os.path.dirname(os.path.abspath(__file__))
+        initial_dir = os.path.dirname(self.csv_display.get("1.0", "end").strip()) if self.csv_display.get("1.0",
+                                                                                                          "end").strip() else os.path.dirname(
+            os.path.abspath(__file__))
 
-        new_csv_files = list(filedialog.askopenfilenames(initialdir=initial_dir, filetypes=(("CSV Files", "*.csv"), ("All files", "*.*"))))
+        new_csv_files = list(filedialog.askopenfilenames(initialdir=initial_dir,
+                                                         filetypes=(("CSV Files", "*.csv"), ("All files", "*.*"))))
 
         if new_csv_files:  # Check if the user selected any new files
             self.csv_files = new_csv_files  # Update the list of selected files
@@ -233,7 +242,8 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
 
     def run_event_extractor(self):
 
-        csv = self.csv_display.get('1.0', 'end').strip().split(', ') if len(self.csv_display.get('1.0', 'end')) > 1 else self.csv_display.get('1.0', 'end')
+        csv = self.csv_display.get('1.0', 'end').strip().split(', ') if len(
+            self.csv_display.get('1.0', 'end')) > 1 else self.csv_display.get('1.0', 'end')
         api_key = self.entry_api_key.get('1.0', 'end').strip()
         num_rows = [x if x == 'MAX' else int(x) for x in self.entry_num_rows.get('1.0', 'end').strip().split(',')]
         city = self.entry_city.get('1.0', 'end')
@@ -242,7 +252,6 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
         column_mapping = dict(item.split(": ", 1) for item in column_mapping_str.split("\n") if item)
 
         try:
-            # Your code here
             extractor = EventExtractor(api_key, csv, column_mapping, city, output_dir, num_rows)
             self.thread = threading.Thread(target=self.run_in_thread, args=(extractor,))
             self.thread.start()
@@ -260,6 +269,7 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
                 subprocess.call(["open", output_file_path])
         except:
             traceback.print_exc()
+
     def cancel_event_extractor(self):
         # Set the stop event
         self.stop_event.set()
@@ -277,12 +287,15 @@ app = App(root)
 frame = tk.Frame(root)
 frame.place(x=265, y=10)
 
-console = Console(frame, height = 26, width= 35, highlightthickness=0, state='disabled')
-console.grid(row=0, column=0, )#sticky='ns')  # you can use grid() inside a frame
+console = Console(frame, height=26, width=35, highlightthickness=0, state='disabled')
+console.grid(row=0, column=0, )
+
+
 def on_closing():
     app.cancel_event_extractor()
     app.save_data()
     root.destroy()
+
 
 root.protocol("WM_DELETE_WINDOW", on_closing)
 root.mainloop()
