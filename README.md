@@ -1,2 +1,2 @@
-# Event-Extractor-With-GUI
- An Event Data Extractor/Webscraper built with beautifulsoup and GPT
+# Event-Extractor-With-GUI-LIVE
+ An event data extractor/web scraper pairing BeautifulSoup and the GPT API
