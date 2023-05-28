@@ -2,7 +2,6 @@ from EventExtractor import EventExtractor
 import threading
 import traceback
 
-
 def run_in_thread(extractor, stop_event):
     try:
         extractor.run(stop_event)
@@ -16,7 +15,7 @@ stop_event = threading.Event()
 csv_files = ["climate_tech_eventbrite_climate_amsterdam.csv", "climate_tech_eventbrite_climate_nyc.csv"]
 num_rows = [1, 1]  # Process all rows in the first CSV, and 10 rows in the second
 city = "Amsterdam and nyc"
-api_key = "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"
+api_key = ""
 
 Column_Mapping = {
     'Event Name': 'The name of the event',
