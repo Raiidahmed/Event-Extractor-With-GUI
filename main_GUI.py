@@ -75,7 +75,7 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
         self.root = root
         self.root.title("Event Extractor")
         window_width = 530
-        window_height = 450
+        window_height = 410
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
         position_top = int(screen_height / 2 - window_height / 2)
@@ -92,7 +92,6 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
         self.button_csv = tk.Button(root, text="Browse", command=self.load_csv_files)
         self.button_run = tk.Button(root, text="Run", width=5, command=self.run_event_extractor)
         self.button_output_dir = tk.Button(root, text="Browse", command=self.select_output_dir)
-        self.button_api_key = tk.Button(root, text="Browse", command=self.load_api_key_file)
 
         script_dir = os.path.dirname(os.path.abspath(__file__))  # get directory of the script
 
@@ -108,9 +107,8 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
 
         self.csv_display.config(state='disabled')
         self.entry_output_dir.config(state='disabled')
-        self.entry_api_key.config(state='disabled')
 
-        self.label_api_key = tk.Label(root, text="Select API Key:")
+        self.label_api_key = tk.Label(root, text="API Key Env Var:")
         self.label_city = tk.Label(root, text="Enter Identifier:")
         self.label_column_mapping = tk.Label(root, text="Column Mapping:")
         self.label_csv = tk.Label(root, text="Select URL Files:")
@@ -121,7 +119,7 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
         # Add tooltips to buttons
         csv_tooltip = Tooltip(self.button_csv, "Shift click to select multiple csv files")
         output_dir_tooltip = Tooltip(self.button_output_dir, "Browse for the output directory")
-        api_key_tooltip = Tooltip(self.button_api_key, "Browse for the API key txt file")
+        api_key_tooltip = Tooltip(self.entry_api_key, "Input API key environment variable")
 
         # Add tooltips to text widgets
         city_tooltip = Tooltip(self.entry_city, "The city name(s) are a good pick")
@@ -151,17 +149,15 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
         self.label_api_key.grid(padx=padx_std, row=6, column=0, sticky="w")
         self.entry_api_key.grid(row=6, column=1, sticky="w")
 
-        self.button_api_key.grid(row=7, pady=(0, pady_std), column=1, sticky="ew")
+        self.label_city.grid(padx=padx_std, pady=pady_std, row=7, column=0, sticky="w")
+        self.entry_city.grid(row=7, column=1, sticky="w")
 
-        self.label_city.grid(padx=padx_std, pady=pady_std, row=8, column=0, sticky="w")
-        self.entry_city.grid(row=8, column=1, sticky="w")
+        self.label_column_mapping.grid(padx=padx_std, pady=(0, pady_std), row=8, column=0, sticky="nw")
+        self.column_mapping_text.grid(row=8, column=1, sticky='w')
 
-        self.label_column_mapping.grid(padx=padx_std, pady=[0, pady_std], row=9, column=0, sticky="nw")
-        self.column_mapping_text.grid(row=9, column=1, sticky='w')
-
-        self.button_run.grid(row=11, column=0, pady=pady_std)
-        self.button_cancel.grid(row=11, column=1)
-        self.checkbox_open_file.grid(padx=12, row=11, column=2, columnspan=2)
+        self.button_run.grid(row=10, column=0, pady=pady_std)
+        self.button_cancel.grid(row=10, column=1)
+        self.checkbox_open_file.grid(padx=12, row=10, column=2, columnspan=2)
 
         # Load saved data
         if os.path.exists('saved_data.pkl'):
@@ -170,7 +166,6 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
 
                 self.csv_display.config(state='normal')
                 self.entry_output_dir.config(state='normal')
-                self.entry_api_key.config(state='normal')
 
                 self.csv_display.delete('1.0', tk.END)
                 self.csv_display.insert(tk.END, self.saved_data.get('csv', ''))
@@ -193,7 +188,6 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
 
                 self.csv_display.config(state='disabled')
                 self.entry_output_dir.config(state='disabled')
-                self.entry_api_key.config(state='disabled')
 
     def load_csv_files(self):
         self.csv_display.config(state='normal')
@@ -224,14 +218,6 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
 
         self.entry_output_dir.config(state='disabled')
 
-    def load_api_key_file(self):
-        self.entry_api_key.config(state='normal')
-        self.api_key_file = filedialog.askopenfilename(filetypes=(("Text Files", "*.txt"), ("All files", "*.*")))
-        with open(self.api_key_file, 'r') as f:
-            self.api_key = f.read().strip()
-        self.entry_api_key.insert(tk.END, self.api_key_file)
-        self.entry_api_key.config(state='disabled')
-
     def save_data(self):
         # Save data
         self.saved_data = {
@@ -248,7 +234,7 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
     def run_event_extractor(self):
 
         csv = self.csv_display.get('1.0', 'end').strip().split(', ') if len(self.csv_display.get('1.0', 'end')) > 1 else self.csv_display.get('1.0', 'end')
-        api_key = open(self.entry_api_key.get('1.0', 'end').strip(), 'r').read().strip()
+        api_key = self.entry_api_key.get('1.0', 'end').strip()
         num_rows = [x if x == 'MAX' else int(x) for x in self.entry_num_rows.get('1.0', 'end').strip().split(',')]
         city = self.entry_city.get('1.0', 'end')
         column_mapping_str = self.column_mapping_text.get('1.0', 'end')
@@ -291,7 +277,7 @@ app = App(root)
 frame = tk.Frame(root)
 frame.place(x=265, y=10)
 
-console = Console(frame, height = 29, width= 35, highlightthickness=0, state='disabled')
+console = Console(frame, height = 26, width= 35, highlightthickness=0, state='disabled')
 console.grid(row=0, column=0, )#sticky='ns')  # you can use grid() inside a frame
 def on_closing():
     app.cancel_event_extractor()

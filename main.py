@@ -1,6 +1,7 @@
 from EventExtractor import EventExtractor
 import threading
 import traceback
+import os
 
 def run_in_thread(extractor, stop_event):
     try:
@@ -15,7 +16,7 @@ stop_event = threading.Event()
 csv_files = ["climate_tech_eventbrite_climate_amsterdam.csv", "climate_tech_eventbrite_climate_nyc.csv"]
 num_rows = [1, 1]  # Process all rows in the first CSV, and 10 rows in the second
 city = "Amsterdam and nyc"
-api_key = ""
+api_key_env = "OPENAI_API_KEY"
 
 Column_Mapping = {
     'Event Name': 'The name of the event',
@@ -27,6 +28,6 @@ Column_Mapping = {
     'Relevance': 'A TRUE or FALSE value linked to whether the event is relevant to climate tech or not'
 }
 
-extractor = EventExtractor(api_key, csv_files, Column_Mapping, city, 'output.csv', num_rows)
+extractor = EventExtractor(api_key_env, csv_files, Column_Mapping, city, 'output.csv', num_rows)
 thread = threading.Thread(target=run_in_thread, args=(extractor, stop_event))
 thread.start()

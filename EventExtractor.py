@@ -9,8 +9,8 @@ import os
 import string
 
 class EventExtractor:
-    def __init__(self, api_key, csv_files, column_mapping, city, output_dir=None, num_rows=None):
-        openai.api_key = api_key
+    def __init__(self, api_key_env, csv_files, column_mapping, city, output_dir=None, num_rows=None):
+        openai.api_key = os.environ[api_key_env]
         self.csv_files = csv_files
         print("csv_files:", self.csv_files)
         self.column_mapping = column_mapping
