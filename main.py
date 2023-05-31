@@ -1,7 +1,6 @@
 from EventExtractor import EventExtractor
 import threading
 import traceback
-import os
 
 def run_in_thread(extractor, stop_event):
     try:
