@@ -68,9 +68,9 @@ python script.py
 
 Or use it as a class named EventExtractor in your Python code:
 
+```
 from threading import Event
 
-```
 stop_event = Event()
 event_extractor = EventExtractor("OPENAI_API_KEY", ["urls.csv"], {"event": "Event Name", "date": "Event Date"}, "San Francisco", num_rows=100)
 event_extractor.run(stop_event)
