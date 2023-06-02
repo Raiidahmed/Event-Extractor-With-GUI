@@ -70,8 +70,8 @@ class App:
 
         self.default_column_mapping = '''Event Name: The name of the event
 Short Description: a short but informative description of the event
-Start: the start datetime of the event in the following format: YYYY-MM-DD HH:MM
-End: the end datetime of the event in the following format: YYYY-MM-DD HH:MM
+Start: the start datetime of the event in the following format: MM-DD-YYYY HH:MM AM/PM
+End: the end datetime of the event in the following format: MM-DD-YYYY HH:MM AM/PM
 Location: The full address of the event
 City: the city the event takes place in
 Relevance: A TRUE or FALSE value linked to whether the event is relevant to climate change or not

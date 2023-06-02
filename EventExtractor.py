@@ -94,22 +94,16 @@ class EventExtractor:
 
         ---\n{url_content}\n---"""
 
-        while True:
-            try:
-                response = openai.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {
-                            "role": "system",
-                            "content": "You are an event data extractor. All date times should be for year 2023 and should not include timezone. Use a semicolon character ; to delimit different fields extracted. Do not provide field names, just the extracted field.",
-                        },
-                        {"role": "user", "content": prompt},
-                    ],
-                )
-                break
-            except openai.error.OpenAIError:
-                print("OpenAI API error encountered. Retrying in 30 seconds...")
-                time.sleep(30)
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an event data extractor. All date times should be for year 2023 and should not include timezone. Use a semicolon character ; to delimit different fields extracted. Do not provide field names, just the extracted field.",
+                },
+                {"role": "user", "content": prompt},
+            ],
+        )
 
         return response.choices[0]["message"]["content"]
 
@@ -144,9 +138,33 @@ class EventExtractor:
             headers = {
                 "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
             }
-            response = requests.get(url, headers=headers)
+
+            for _ in range(4):  # Will try 4 times before skipping
+                try:
+                    response = requests.get(url, headers=headers)
+                    break
+                except requests.exceptions.RequestException:
+                    print(f"Error fetching {url}, retrying...")
+                    time.sleep(5)  # Optional: Wait for 5 seconds before retrying
+            else:  # This will execute if the loop has exhausted all attempts (4 tries in this case) without breaking
+                print(f"Failed to fetch {url} after 4 attempts, moving to next URL.")
+                continue
+
             body_text = self.extract_body_text(response.text)
-            details = self.extract_event_details(body_text, url)
+            successful = False  # Create a success flag
+
+            for _ in range(4):  # Will try 4 times before skipping
+                try:
+                    details = self.extract_event_details(body_text, url)
+                    successful = True
+                    break  # If successful, we break the loop and do not execute the 'else' clause.
+                except openai.error.OpenAIError:
+                    print("OpenAI API error encountered. Retrying in 30 seconds...")
+                    time.sleep(30)
+
+            if not successful:
+                print("Failed to get response from OpenAI after 4 attempts. Moving to next URL.")
+                continue  # If OpenAI API failed after 4 attempts, skip to the next URL
 
             event_details = [s.replace(';', '\t') for s in details.split(';')]
             event_details.append(self.strip_url_parameters(url))
