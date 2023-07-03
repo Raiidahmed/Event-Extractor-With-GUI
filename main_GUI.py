@@ -68,14 +68,13 @@ class Console(tk.Text):
 class App:
     def __init__(self, root):
 
-        self.default_column_mapping = '''Event Name: The name of the event
-Short Description: a short but informative description of the event
-Start: the start datetime of the event in the following format: MM-DD-YYYY HH:MM AM/PM
-End: the end datetime of the event in the following format: MM-DD-YYYY HH:MM AM/PM
-Location: The full address of the event
-City: the city the event takes place in
-Relevance: A TRUE or FALSE value linked to whether the event is relevant to climate change or not
-        '''
+        self.default_column_mapping = '''Event Name: The name of the event 
+Description: a informative description of the event in 50 words
+Start: the start datetime of the event in the following format: Month Day, Year, Hour:Minute AM/PM
+End: the end datetime of the event in the following format: Month Day, Year, Hour:Minute AM/PM
+Location: The full address of the event 
+City: the city the event takes place in 
+Relevance: A single TRUE or FALSE value linked to whether the event is associated with even a single one of the following terms (there should be a slight bias towards true): Climate, Sustainability, Enviromental Volunteering, Environment, Climate Tech, Green, Clean, Renewable, Emissions, Carbon, Environmental Conservation, Climate Innovation, Agriculture, Transportation, Building, Energy, Waste, Water, Air, Biodiversity, Bioenergy, Geothermal, Hydroelectric, Solar, Wind, Efficiency, Environmental Policy, Climate Awareness, Climate Advocacy, Reforestation, Technology, Diversity, ESG, Recycling, Composting, Ocean, Wildlife, Earth, Soil, Forestry, Ecosystems, Plastics, Climate Investments, Climate Startups, Climate Legislation, Climate Activism'''
 
         self.open_file_var = tk.BooleanVar()
         self.root = root
@@ -242,8 +241,7 @@ Relevance: A TRUE or FALSE value linked to whether the event is relevant to clim
 
     def run_event_extractor(self):
 
-        csv = self.csv_display.get('1.0', 'end').strip().split(', ') if len(
-            self.csv_display.get('1.0', 'end')) > 1 else self.csv_display.get('1.0', 'end')
+        csv = self.csv_display.get('1.0', 'end').strip().split(', ') if len(self.csv_display.get('1.0', 'end')) > 1 else self.csv_display.get('1.0', 'end')
         api_key = self.entry_api_key.get('1.0', 'end').strip()
         num_rows = [x if x == 'MAX' else int(x) for x in self.entry_num_rows.get('1.0', 'end').strip().split(',')]
         city = self.entry_city.get('1.0', 'end')

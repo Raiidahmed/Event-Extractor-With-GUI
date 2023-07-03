@@ -39,8 +39,7 @@ class EventExtractor:
 
     def read_urls_from_csv(self):
         """Reads URLs from a CSV file."""
-        all_urls = []
-        all_additional_data = []
+        all_data = []
 
         if isinstance(self.num_rows, int):
             num_rows_list = [self.num_rows] * len(self.csv_files)
@@ -52,22 +51,33 @@ class EventExtractor:
             raise TypeError("Invalid num_rows: Must be an int or a list of equal length to csv_files")
 
         for csv_file, num_rows in zip(self.csv_files, num_rows_list):
-            df = pd.read_csv(csv_file)
+            if num_rows == 'MAX':
+                df = pd.read_csv(csv_file)
+            else:
+                df = pd.read_csv(csv_file, nrows=num_rows)
+
+            # If df is a Series (happens when the CSV has only one row), convert it to a DataFrame
+            if isinstance(df, pd.Series):
+                df = df.to_frame().transpose()
+
+            # Replace NaN values with an empty string
+            df.iloc[:, 0].fillna('', inplace=True)
 
             if not df.iloc[:, 0].apply(self.is_url).all():
                 print(f"Error: {csv_file} does not contain URLs in the first column.")
                 continue
 
-            rows = df.iloc[:, 0].tolist() if num_rows in {'MAX', 'MAXALL'} else df.iloc[:num_rows, 0].tolist()
-            additional_data = df.iloc[:, 1:] if num_rows in {'MAX', 'MAXALL'} else df.iloc[:num_rows, 1:]
-            additional_data['Source CSV'] = csv_file
+            df['Source CSV'] = csv_file
+            all_data.append(df)
 
-            all_urls.extend(rows)
-            all_additional_data.append(additional_data)
+        final_data = pd.concat(all_data)
+        final_data.reset_index(drop=True, inplace=True)
 
-        final_additional_data = pd.concat(all_additional_data)
-        column_order = ['Source CSV'] + [col for col in final_additional_data.columns if col != 'Source CSV']
-        final_additional_data = final_additional_data[column_order]
+        # Drop duplicate URLs here after all dataframes have been concatenated
+        final_data.drop_duplicates(subset=final_data.columns[0], keep='first', inplace=True)
+
+        all_urls = final_data.iloc[:, 0].tolist()
+        final_additional_data = final_data.iloc[:, 1:]
 
         return all_urls, final_additional_data
 
@@ -99,7 +109,7 @@ class EventExtractor:
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an event data extractor. All date times should be for year 2023 and should not include timezone. Use a semicolon character ; to delimit different fields extracted. Do not provide field names, just the extracted field.",
+                    "content": "You are an event data extractor. All date times should not include timezone. Use a semicolon character ; to delimit different fields extracted. Do not provide field names, just the extracted field.",
                 },
                 {"role": "user", "content": prompt},
             ],
@@ -141,9 +151,9 @@ class EventExtractor:
 
             for _ in range(4):  # Will try 4 times before skipping
                 try:
-                    response = requests.get(url, headers=headers)
+                    response = requests.get(url, headers=headers, timeout=15)
                     break
-                except requests.exceptions.RequestException:
+                except (requests.exceptions.RequestException, requests.exceptions.Timeout):
                     print(f"Error fetching {url}, retrying...")
                     time.sleep(5)  # Optional: Wait for 5 seconds before retrying
             else:  # This will execute if the loop has exhausted all attempts (4 tries in this case) without breaking
@@ -151,23 +161,37 @@ class EventExtractor:
                 continue
 
             body_text = self.extract_body_text(response.text)
-            successful = False  # Create a success flag
-
+            event_details = []
             for _ in range(4):  # Will try 4 times before skipping
+                successful = False  # Create a success flag
                 try:
                     details = self.extract_event_details(body_text, url)
+                    event_details = [detail.replace('\n', '') for detail in
+                                     details.split(';')]  # Removing newline characters
+                    event_details.append(self.strip_url_parameters(url))
+
+                    # Checking if the lengths of the extraction and the column mapping match
+                    if len(event_details) - 1 != len(self.column_mapping):  # subtract 1 because we appended the URL
+                        print("Event details extraction failed. Retrying...")
+                        raise ValueError  # Raise an error to trigger the retry
+
                     successful = True
                     break  # If successful, we break the loop and do not execute the 'else' clause.
                 except openai.error.OpenAIError:
                     print("OpenAI API error encountered. Retrying in 30 seconds...")
                     time.sleep(30)
+                    continue
+                except ValueError:
+                    print("URL/length error encountered. Retrying immediately...")
+                    continue
 
             if not successful:
-                print("Failed to get response from OpenAI after 4 attempts. Moving to next URL.")
-                continue  # If OpenAI API failed after 4 attempts, skip to the next URL
+                print("Failed to get the correct response from OpenAI after 4 attempts. Marking error and moving to next URL.")
+                if event_details:  # Check if the list is not empty
+                    event_details[0] = 'ERROR'  # Replace the first value in the list with 'ERROR'
+                else:
+                    event_details.append('ERROR')  # If the list is empty, append 'ERROR'
 
-            event_details = [s.replace(';', '\t') for s in details.split(';')]
-            event_details.append(self.strip_url_parameters(url))
             event_info.append(event_details)
 
         self.write_events_to_csv(event_info, additional_data, self.output_file, self.column_mapping)
