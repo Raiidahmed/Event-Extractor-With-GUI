@@ -3,7 +3,6 @@ import time
 import datetime
 import string
 from urllib.parse import urlparse, urlunparse
-
 import pandas as pd
 import requests
 import openai
@@ -149,7 +148,7 @@ class EventExtractor:
                 "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
             }
 
-            for _ in range(4):  # Will try 4 times before skipping
+            for _ in range(10):  # Will try 4 times before skipping
                 try:
                     response = requests.get(url, headers=headers, timeout=15)
                     break
@@ -157,12 +156,12 @@ class EventExtractor:
                     print(f"Error fetching {url}, retrying...")
                     time.sleep(5)  # Optional: Wait for 5 seconds before retrying
             else:  # This will execute if the loop has exhausted all attempts (4 tries in this case) without breaking
-                print(f"Failed to fetch {url} after 4 attempts, moving to next URL.")
+                print(f"Failed to fetch {url} after 10 attempts, moving to next URL.")
                 continue
 
             body_text = self.extract_body_text(response.text)
             event_details = []
-            for _ in range(4):  # Will try 4 times before skipping
+            for _ in range(10):  # Will try 4 times before skipping
                 successful = False  # Create a success flag
                 try:
                     details = self.extract_event_details(body_text, url)
@@ -180,13 +179,12 @@ class EventExtractor:
                 except openai.error.OpenAIError:
                     print("OpenAI API error encountered. Retrying in 30 seconds...")
                     time.sleep(30)
-                    continue
                 except ValueError:
                     print("URL/length error encountered. Retrying immediately...")
                     continue
 
             if not successful:
-                print("Failed to get the correct response from OpenAI after 4 attempts. Marking error and moving to next URL.")
+                print("Failed to get the correct response from OpenAI after 10 attempts. Marking error and moving to next URL.")
                 if event_details:  # Check if the list is not empty
                     event_details[0] = 'ERROR'  # Replace the first value in the list with 'ERROR'
                 else:
