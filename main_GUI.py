@@ -69,12 +69,11 @@ class App:
     def __init__(self, root):
 
         self.default_column_mapping = '''Event Name: The name of the event 
-Description: a informative description of the event in 50 words
-Start: the start datetime of the event in the following format: Month Day, Year, Hour:Minute AM/PM
-End: the end datetime of the event in the following format: Month Day, Year, Hour:Minute AM/PM
+Start: The start datetime of the event in the following format: Month Day, Year, Hour:Minute AM/PM 
+End: The end datetime of the event in the following format: Month Day, Year, Hour:Minute AM/PM 
 Location: The full address of the event 
-City: the city the event takes place in 
-Relevance: A single TRUE or FALSE value linked to whether the event is associated with even a single one of the following terms (there should be a slight bias towards true): CLimate Change, Plants, Climate, Sustainability, Enviromental Volunteering, Environment, Climate Tech, Green, Clean, Renewable, Emissions, Carbon, Environmental Conservation, Climate Innovation, Agriculture, Transportation, Building, Energy, Waste, Water, Air, Biodiversity, Bioenergy, Geothermal, Hydroelectric, Solar, Wind, Efficiency, Environmental Policy, Climate Awareness, Climate Advocacy, Reforestation, Technology, Diversity, ESG, Recycling, Composting, Ocean, Wildlife, Earth, Soil, Forestry, Ecosystems, Plastics, Climate Investments, Climate Startups, Climate Legislation, Climate Activism'''
+Description: A description of the event
+Organizer: The organizer of the event'''
 
         self.open_file_var = tk.BooleanVar()
         self.root = root
@@ -105,7 +104,7 @@ Relevance: A single TRUE or FALSE value linked to whether the event is associate
         self.entry_num_rows = tk.Text(root, width=width_std, height=1, highlightthickness=0)
         self.entry_output_dir = tk.Text(root, width=width_std, height=1, highlightthickness=0)
         self.entry_output_dir.insert(tk.END, script_dir)  # default to directory of the script
-        self.column_mapping_text = tk.Text(root, width=width_std, height=7, wrap=tk.NONE, highlightthickness=0)
+        self.column_mapping_text = tk.Text(root, width=width_std, height=5, wrap=tk.NONE, highlightthickness=0)
         self.column_mapping_text.insert(tk.END, self.default_column_mapping)
         self.csv_display = tk.Text(root, height=3, width=width_std, highlightthickness=0)
 
@@ -160,9 +159,9 @@ Relevance: A single TRUE or FALSE value linked to whether the event is associate
         self.label_column_mapping.grid(padx=padx_std, pady=(0, pady_std), row=8, column=0, sticky="nw")
         self.column_mapping_text.grid(row=8, column=1, sticky='w')
 
-        self.button_run.grid(row=10, column=0, pady=pady_std)
-        self.button_cancel.grid(row=10, column=1)
-        self.checkbox_open_file.grid(padx=12, row=10, column=2, columnspan=2)
+        self.button_run.grid(row=9, column=0, pady=pady_std)
+        self.button_cancel.grid(row=9, column=1)
+        self.checkbox_open_file.grid(padx=12, row=9, column=2, columnspan=2)
 
         # Load saved data
         if os.path.exists('saved_data.pkl'):
@@ -260,6 +259,7 @@ Relevance: A single TRUE or FALSE value linked to whether the event is associate
         # This method will be called in a new thread
         try:
             extractor.run(self.stop_event)
+
             if self.open_file_var.get():
                 # If the checkbox is checked, open the file here.
                 # Replace the following line with the actual code to open your file.
@@ -285,7 +285,7 @@ app = App(root)
 frame = tk.Frame(root)
 frame.place(x=265, y=10)
 
-console = Console(frame, height=26, width=35, highlightthickness=0, state='disabled')
+console = Console(frame, height=24, width=35, highlightthickness=0, state='disabled')
 console.grid(row=0, column=0, )
 
 
