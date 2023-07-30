@@ -1,0 +1,53 @@
+Error in URl parser for https://www.eventbrite.co.uk/e/interpretable-ai-algorithmic-accountability-and-ai-ethics-tickets-684740416017. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.co.uk/e/interpretable-ai-algorithmic-accountability-and-ai-ethics-tickets-684740416017. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.co.uk/e/interpretable-ai-algorithmic-accountability-and-ai-ethics-tickets-684740416017. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.co.uk/e/interpretable-ai-algorithmic-accountability-and-ai-ethics-tickets-684740416017
+Error in URl parser for https://www.eventbrite.com/e/analyticsclub-virtual-job-fair-career-expo-event-new-york-tickets-484122682977. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/this-is-an-ai-event-tickets-677375366957. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/this-is-an-ai-event-tickets-677375366957. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/this-is-an-ai-event-tickets-677375366957. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/this-is-an-ai-event-tickets-677375366957
+Error in URl parser for https://www.eventbrite.com/e/exploring-the-boundaries-ai-writing-tools-and-custom-services-for-academic-tickets-678004227897. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/exploring-the-boundaries-ai-writing-tools-and-custom-services-for-academic-tickets-678004227897. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/exploring-the-boundaries-ai-writing-tools-and-custom-services-for-academic-tickets-678004227897. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/exploring-the-boundaries-ai-writing-tools-and-custom-services-for-academic-tickets-678004227897
+ValueError occurred for url 42. Error: Failed to parse date: The start datetime of the event in the following format: Month Day, Year, Hour:Minute AM/PM
+ValueError occurred for url 42. Error: Failed to parse date: The start datetime of the event: Month Day, Year, Hour:Minute AM/PM
+ValueError occurred for url 42. Error: Failed to parse date:  Month Day, Year, Hour:Minute AM/PM
+ValueError occurred for url 42. Error: Failed to parse date: Month Day, Year, Hour:Minute AM/PM
+ValueError occurred for url 42. Error: Failed to parse date:  Month Day, Year, Hour:Minute AM/PM
+ValueError occurred for url 42. Error: Failed to parse date: Month Day, Year, Hour:Minute AM/PM
+PastDateError occurred for url 42. Error: Skipping event due to date 2023-02-23 00:00:00 occurring in the past
+Error in URl parser for https://www.eventbrite.com/e/realtors-turbocharge-your-branding-free-ai-marketing-tools-for-realtors-tickets-675418162907. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/realtors-turbocharge-your-branding-free-ai-marketing-tools-for-realtors-tickets-675418162907. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/realtors-turbocharge-your-branding-free-ai-marketing-tools-for-realtors-tickets-675418162907. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/realtors-turbocharge-your-branding-free-ai-marketing-tools-for-realtors-tickets-675418162907
+Error in URl parser for https://www.eventbrite.com/e/brooklyn-basketball-social-tickets-686021868877. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/brooklyn-basketball-social-tickets-686021868877. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/brooklyn-basketball-social-tickets-686021868877. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/brooklyn-basketball-social-tickets-686021868877
+Error in URl parser for https://www.eventbrite.com/e/volleyball-social-pt-2-tickets-674430388447. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/volleyball-social-pt-2-tickets-674430388447. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/volleyball-social-pt-2-tickets-674430388447. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/volleyball-social-pt-2-tickets-674430388447
+Error in URl parser for https://www.eventbrite.com/e/caregiver-hour-baby-social-time-tickets-663291240957. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/caregiver-hour-baby-social-time-tickets-663291240957. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/caregiver-hour-baby-social-time-tickets-663291240957. Error: 'NoneType' object has no attribute 'get_text'
+URL parser failure for https://www.eventbrite.com/e/caregiver-hour-baby-social-time-tickets-663291240957
+Error in URl parser for https://www.eventbrite.co.uk/e/mastering-effective-ai-governance-registration-676594381007. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.co.uk/e/mastering-effective-ai-governance-registration-676594381007. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.co.uk/e/mastering-effective-ai-governance-registration-676594381007. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.co.uk/e/mastering-effective-ai-governance-registration-676594381007
+Error in URl parser for https://www.eventbrite.com.au/e/generative-ai-governance-and-risk-management-tickets-668642276047. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com.au/e/generative-ai-governance-and-risk-management-tickets-668642276047. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com.au/e/generative-ai-governance-and-risk-management-tickets-668642276047. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com.au/e/generative-ai-governance-and-risk-management-tickets-668642276047
+Error in URl parser for https://www.eventbrite.com.au/e/generative-ai-governance-and-risk-management-tickets-668644603007. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com.au/e/generative-ai-governance-and-risk-management-tickets-668644603007. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com.au/e/generative-ai-governance-and-risk-management-tickets-668644603007. Error: 'NoneType' object has no attribute 'get_text'
+URL parser failure for https://www.eventbrite.com.au/e/generative-ai-governance-and-risk-management-tickets-668644603007
+ValueError occurred for url 159. Error: Failed to parse date: 
+Error in URl parser for https://www.eventbrite.com/e/space-renaissance-usa-networking-mixer-tickets-647036572807. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/space-renaissance-usa-networking-mixer-tickets-647036572807. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/space-renaissance-usa-networking-mixer-tickets-647036572807. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/space-renaissance-usa-networking-mixer-tickets-647036572807

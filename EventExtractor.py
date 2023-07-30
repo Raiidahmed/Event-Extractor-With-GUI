@@ -9,6 +9,8 @@ import math
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+import logging
+import csv
 
 class PastDateError(Exception):
     """Raised when the date is in the past."""
@@ -21,6 +23,7 @@ class AddressParseError(Exception):
 class EventExtractor:
     def __init__(self, api_key_env, csv_files, column_mapping, city, output_dir=None, num_rows=None):
         """Initializes EventExtractor."""
+
         openai.api_key = os.environ[api_key_env]
 
         self.csv_files = csv_files
@@ -31,9 +34,14 @@ class EventExtractor:
 
         whitelist = set(string.ascii_letters + string.digits + '_-')
         sanitized_city = ''.join(c if c in whitelist else '_' for c in self.city)
-        output_filename = f"{sanitized_city}_events_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.csv"
+        self.output_filename = f"{sanitized_city}_events_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.csv"
 
-        self.output_file = os.path.join(output_dir, output_filename)
+        self.error_logger = logging.getLogger('errorLogger')
+        self.error_logger.setLevel(logging.ERROR)
+        error_handler = logging.FileHandler('./Errors/error_log_' + os.path.splitext(self.output_filename)[0] + '.txt')
+        self.error_logger.addHandler(error_handler)
+
+        self.output_file = os.path.join(output_dir, self.output_filename)
         self.num_rows = num_rows
 
         print("csv_files: " + ', '.join(os.path.basename(path) for path in self.csv_files))
@@ -45,6 +53,18 @@ class EventExtractor:
         """Checks if the value is a URL."""
         parsed = urlparse(value)
         return bool(parsed.scheme and parsed.netloc)
+
+    @staticmethod
+    def strip_url_parameters(url):
+        """Removes query parameters from a URL."""
+        return urlunparse(urlparse(url)._replace(query=None))
+
+    def save_offending_row_to_csv(self, row):
+        """Save offending row to CSV."""
+        filename = './Errors/error_log_' + os.path.splitext(self.output_filename)[0] + '.csv'
+        with open(filename, 'a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([row])
 
     def read_urls_from_csv(self):
         """Reads URLs from a CSV file."""
@@ -76,6 +96,8 @@ class EventExtractor:
                 print(f"Error: {csv_file} does not contain URLs in the first column.")
                 continue
 
+            df.iloc[:, 0] = df.iloc[:, 0].apply(self.strip_url_parameters)
+
             df['City'] = str(csv_file).rsplit('_', 1)[-1].replace('.csv', '')
             df['Source CSV'] = csv_file
 
@@ -91,11 +113,6 @@ class EventExtractor:
         final_additional_data = final_data.iloc[:, 1:]
 
         return all_urls, final_additional_data
-
-    @staticmethod
-    def strip_url_parameters(url):
-        """Removes query parameters from a URL."""
-        return urlunparse(urlparse(url)._replace(query=None))
 
     @staticmethod
     def extract_body_text(html_content):
@@ -174,8 +191,7 @@ class EventExtractor:
         """Returns the output file path."""
         return self.output_file
 
-    @staticmethod
-    def check_relevance(dataframe, terms, max_prompts_per_request=25):
+    def check_relevance(self, dataframe, terms, max_prompts_per_request=25):
         """
         Method to read input prompts from the dataframe and check their relevance against a list of terms using the GPT API.
         The method appends the relevance result to the dataframe.
@@ -241,65 +257,77 @@ class EventExtractor:
                 except Exception as e:
                     retries += 1
                     print(f"Error in iteration {i + 1}: {e}. Retry {retries} of 10.")
+                    self.error_logger.error(f"Error in relevance check iteration. Error: {str(e)}")
                     time.sleep(2)  # Optional: sleep for 2 seconds before retrying
                     if retries == 10:
                         print("Maximum retries exceeded. Breaking the loop.")
+                        self.error_logger.error(f"Relevance check failure.")
                         return
 
         # Append the results to the dataframe
         print("Relevance check process completed.")
         return(relevance_results)
 
+    @staticmethod
+    def process_eventbrite(url):
+        r = requests.get(url)
+        html_content = r.content
+        soup = BeautifulSoup(html_content, 'html.parser')
+
+        h1 = soup.find('h1', class_='event-title css-0')
+        start_time_meta = soup.find('meta', property=lambda x: x == 'event:start_time' if x else False)
+        start_time_str = start_time_meta['content']
+        start_time = datetime.fromisoformat(start_time_str.replace("Z", "+00:00"))
+
+        end_time_meta = soup.find('meta', property=lambda x: x == 'event:end_time' if x else False)
+        end_time_str = end_time_meta['content']
+        end_time = datetime.fromisoformat(end_time_str.replace("Z", "+00:00"))
+
+        location_meta = soup.find('meta', attrs={'name': 'twitter:data1'})
+        location = location_meta['value']
+
+        description = soup.find('div', class_='has-user-generated-content')
+        organizer = soup.find('a', class_='descriptive-organizer-info__name-link')
+
+        return [h1.get_text(), start_time.strftime('%B %d, %Y, %I:%M %p'),
+                end_time.strftime('%B %d, %Y, %I:%M %p'), location, description.get_text(), organizer['href']]
+
     def process_url_with_bs(self, url):
         """Processes a URL with BeautifulSoup."""
+
+        # Mapping dictionary
+        url_mapping = {
+            'eventbrite': EventExtractor.process_eventbrite,
+            # You can add more here: 'someotherwebsite.com': process_someotherwebsite,
+        }
+
+        parser = None
+        for domain, parser_func in url_mapping.items():
+            if domain in url:
+                parser = parser_func
+                break
+
+        if not parser:
+            print(f"No parser found for URL: {url}")
+            return None
+
         for _ in range(3):
             try:
-
-                r = requests.get(url)
-                html_content = r.content
-
-                soup = BeautifulSoup(html_content, 'html.parser')
-
-                # Find the specific h1 with the class
-                h1 = soup.find('h1', class_='event-title css-0')
-
-                # Find the specific meta tag with the property event:start_time
-                start_time_meta = soup.find('meta', property=lambda x: x == 'event:start_time' if x else False)
-
-                # Get the content within that meta tag
-                start_time_str = start_time_meta['content']
-
-                # Parse the string into a datetime object
-                start_time = datetime.fromisoformat(start_time_str.replace("Z", "+00:00"))
-
-                # Find the specific meta tag with the property event:end_time
-                end_time_meta = soup.find('meta', property=lambda x: x == 'event:end_time' if x else False)
-
-                # Get the content within that meta tag
-                end_time_str = end_time_meta['content']
-
-                # Parse the string into a datetime object
-                end_time = datetime.fromisoformat(end_time_str.replace("Z", "+00:00"))
-
-                # Find the specific meta tag with the name twitter:data1
-                location_meta = soup.find('meta', attrs={'name': 'twitter:data1'})
-
-                # Get the value within that meta tag
-                location = location_meta['value']
-
-                description = soup.find('div', class_='has-user-generated-content')
-
-                organizer = soup.find('a', class_='descriptive-organizer-info__name-link')
-
-
-                return [h1.get_text(), start_time.strftime('%B %d, %Y, %I:%M %p'),
-                        end_time.strftime('%B %d, %Y, %I:%M %p'), location, description.get_text(), organizer['href']]
-
+                return parser(url)
             except Exception as e:
-                print(f"Error processing URL with BeautifulSoup: {url}. Error: {e}")
+                print(f"Error processing URL: {url}. Error: {e}")
+                self.error_logger.error(f"Error in URl parser for {url}. Error: {str(e)}")
         else:
-            print(f"Failed to process URL with BeautifulSoup after 3 attempts: {url}")
+            print(f"Failed to process URL after 3 attempts: {url}")
+            self.error_logger.error(f"URL parser failure for {url}")
             return None
+
+    def seconds_to_hms(self, seconds):
+        """Convert seconds to hours, minutes, and seconds format."""
+        hours = int(seconds // 3600)
+        minutes = int((seconds % 3600) // 60)
+        secs = int(seconds % 60)
+        return hours, minutes, secs
 
     def run(self, stop_event):
         """Runs the event extractor."""
@@ -309,10 +337,29 @@ class EventExtractor:
         datetime_fields = {1, 2}  # indices of datetime fields in event_details
         address_fields = 3
 
+        start_time = time.time()
+
         for i, url in enumerate(urls, start=1):
             if stop_event.is_set():
                 break
-            print(f"Processing URL {i} out of {total_urls}")
+
+            current_time = time.time()
+            elapsed_time = current_time - start_time  # Calculate elapsed time for processed URLs
+
+            # Average time per URL
+            if i > 1:  # This is to avoid division by zero for the first URL
+                avg_time_per_url = elapsed_time / (i - 1)
+            else:
+                avg_time_per_url = 0
+
+            # Estimate time remaining
+            estimated_time_remaining = avg_time_per_url * (total_urls - i)
+
+            elapsed_h, elapsed_m, elapsed_s = self.seconds_to_hms(elapsed_time)
+            estimated_h, estimated_m, estimated_s = self.seconds_to_hms(estimated_time_remaining)
+
+            print(
+                f"Processing URL {i} out of {total_urls}. Time elapsed: {elapsed_h}h {elapsed_m}m {elapsed_s}s. Estimated time remaining: {estimated_h}h {estimated_m}m {estimated_s}s.")
 
             headers = {
                 "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
@@ -322,11 +369,13 @@ class EventExtractor:
                 try:
                     response = requests.get(url, headers=headers, timeout=15)
                     break
-                except (requests.exceptions.RequestException, requests.exceptions.Timeout):
+                except (requests.exceptions.RequestException, requests.exceptions.Timeout) as e:
                     print(f"Error fetching {url}, retrying...")
+                    self.error_logger.error(f"Error fetching {url}. Error: {str(e)}")
                     time.sleep(5)  # Optional: Wait for 5 seconds before retrying
             else:  # This will execute if the loop has exhausted all attempts (4 tries in this case) without breaking
                 print(f"Failed to fetch {url} after 10 attempts, moving to next URL.")
+                self.error_logger.error(f"Failure fetching {url}.")
                 continue
 
             body_text = self.extract_body_text(response.text)
@@ -334,8 +383,8 @@ class EventExtractor:
 
             soup_flag = False
 
-            if "eventbrite.com" in url:
-                print(f'Attempting to process URL {i} with Beautiful Soup')
+            print(f'Attempting to process URL {i} with Beautiful Soup')
+            if 'eventbrite' in url:
                 event_details = self.process_url_with_bs(url)
                 if event_details != None:
                     event_details.append(self.strip_url_parameters(url))
@@ -362,34 +411,43 @@ class EventExtractor:
 
                         successful = True
                         break  # If successful, we break the loop and do not execute the 'else' clause.
-                    except openai.error.OpenAIError:
+                    except openai.error.OpenAIError as e:
                         print("OpenAI API error encountered. Retrying in 30 seconds...")
+                        self.error_logger.error(f"OpenAI api error occurred for url {i}. Error: {str(e)}")
                         time.sleep(30)
                     except ValueError as e:
                         print(e)
+                        self.error_logger.error(f"ValueError occurred for url {i}. Error: {str(e)}")
                         continue
                     except PastDateError as e:
                         print(e)
+                        self.error_logger.error(f"PastDateError occurred for url {i}. Error: {str(e)}")
                         break
                     except AddressParseError as e:
                         print(e)
+                        self.error_logger.error(f"AddressParseError occurred for url {i}. Error: {str(e)}")
                         continue
                     except Exception as e:
+                        self.error_logger.error(f"General Error occurred for url {i}. Error: {str(e)}")
                         print(e)
                         continue
 
                 if soup_flag == 'SHIFT':
                     if event_details:  # Check if the list is not empty
-                        event_details[0] = 'BS to GPT: ' + event_details[0]
+                        GPT_row = 'BS to GPT: ' + event_details[0]
+                        self.save_offending_row_to_csv(GPT_row)
                     else:
-                        event_details.append('BS to GPT: ')
+                        GPT_row.append('BS to GPT: ')
+                        self.save_offending_row_to_csv(GPT_row)
 
                 if not successful:
                     print("Failed to get the correct response from OpenAI. Marking error and moving to next URL.")
                     if event_details:  # Check if the list is not empty
                         event_details[0] = 'ERROR ' + event_details[0] # Replace the first value in the list with 'ERROR'
+                        self.save_offending_row_to_csv(event_details)
                     else:
                         event_details.append('ERROR ')  # If the list is empty, append 'ERROR'
+                        self.save_offending_row_to_csv(event_details)
 
             event_info.append(event_details)
 
@@ -402,10 +460,44 @@ class EventExtractor:
                  'Forestry', 'Ecosystems', 'Climate Investments', 'Climate Startups',
                  'Climate Legislation', 'Climate Activism', 'Recycled', 'Vintage', 'Compost'
                  'Vegan', 'Green', 'Sustainable Cities', 'Urbanism', 'Sustainable Nonprofits'
-                 'Sustainable Buildings', 'Sustainable Design', 'Sustainable Architecture']
+                 'Sustainable Buildings', 'Sustainable Design', 'Sustainable Architecture',
+                 'Impact Investing', 'Local Produce', 'Farmers Market', 'Vegan Market', 'Vegetables',
+                 'Plant Based']
+
+        '''terms = ['AI Governance', 'Ethics', 'Legislation', 'Social Justice', 'Governance']'''
 
         event_info = [row + [value] for row, value in zip(event_info, self.check_relevance(event_info, terms))]
         self.write_events_to_csv(event_info, additional_data, self.output_file, self.column_mapping)
         pd.read_csv(self.output_file).pipe(lambda df: df.assign(Relevance=df.apply(lambda row: True if not pd.isna(row['Source CSV']) and 'eventbrite' not in row['Source CSV'].lower() else row['Relevance'], axis=1))).to_csv(self.output_file, index=False)
 
         print(f"The output CSV {self.output_file} has been saved. It contains {len(event_info)} rows.")
+
+        print("Starting the CSV cleaning process...")
+        df = pd.read_csv(self.output_file)
+
+        print("Removing rows that start with 'ERROR'...")
+        df[df.columns[0]] = df[df.columns[0]].fillna("").astype(str)
+        df = df[~df[df.columns[0]].str.startswith("ERROR")]
+
+        print("Removing empty columns...")
+        df = df.dropna(axis=1, how='all')
+
+        if 'Source CSV' in df.columns:
+            print("Removing the 'Source CSV' column...")
+            df = df.drop('Source CSV', axis=1)
+
+        if 'Relevance' in df.columns:
+            relevance_empty = pd.isnull(df['Relevance']).all()
+            if not relevance_empty:
+                print("Removing rows with 'False' in the Relevance column...")
+                df['Relevance'] = df['Relevance'].astype(str)
+                df = df[df['Relevance'].str.strip().str.lower() != 'false']
+
+                print("Removing the 'Relevance' column...")
+                df = df.drop('Relevance', axis=1)
+
+        new_file_path = "/".join(self.output_file.split("/")[:-1]) + "/Cleaned_" + self.output_file.split("/")[-1]
+        df.to_csv(new_file_path, index=False)
+        print(f"CSV cleaning process completed! File saved at: {new_file_path}")
+
+

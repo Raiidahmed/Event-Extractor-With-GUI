@@ -1,0 +1,5 @@
+Error in URl parser for https://www.eventbrite.com/e/micromobility-demo-days-find-your-next-e-ride-tickets-681947722997. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/micromobility-demo-days-find-your-next-e-ride-tickets-681947722997. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/micromobility-demo-days-find-your-next-e-ride-tickets-681947722997. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/micromobility-demo-days-find-your-next-e-ride-tickets-681947722997
+ValueError occurred for url 1. Error: Failed to parse date:  August 3, 11 am - 2 pm
