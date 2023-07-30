@@ -376,6 +376,9 @@ class EventExtractor:
             else:  # This will execute if the loop has exhausted all attempts (4 tries in this case) without breaking
                 print(f"Failed to fetch {url} after 10 attempts, moving to next URL.")
                 self.error_logger.error(f"Failure fetching {url}.")
+                event_details = ['ERROR']
+                self.save_offending_row_to_csv(event_details)
+                event_info.append(event_details)
                 continue
 
             body_text = self.extract_body_text(response.text)
