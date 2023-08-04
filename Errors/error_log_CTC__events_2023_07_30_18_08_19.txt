@@ -216,3 +216,198 @@ Error in URl parser for https://www.eventbrite.com/e/augmented-reality-art-magic
 URL parser failure for https://www.eventbrite.com/e/augmented-reality-art-magic-tickets-622588909187
 ValueError occurred for url 608. Error: Event details extraction failed. Retrying...
 ValueError occurred for url 608. Error: Event details extraction failed. Retrying...
+Error in URl parser for https://www.eventbrite.com/e/pmp-certification-training-in-seattle-wa-tickets-401142486977. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/pmp-certification-training-in-seattle-wa-tickets-401142486977. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/pmp-certification-training-in-seattle-wa-tickets-401142486977. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/pmp-certification-training-in-seattle-wa-tickets-401142486977
+AddressParseError occurred for url 792. Error: Failed to parse address: Seattle, WA, WA 98116
+PastDateError occurred for url 792. Error: Skipping event due to date 2017-08-22 09:00:00 occurring in the past
+Error in URl parser for https://www.eventbrite.com/e/pmp-certification-training-in-seattle-wa-tickets-354397200567. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/pmp-certification-training-in-seattle-wa-tickets-354397200567. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/pmp-certification-training-in-seattle-wa-tickets-354397200567. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/pmp-certification-training-in-seattle-wa-tickets-354397200567
+Error in URl parser for https://www.eventbrite.com/e/lux-saber-corps-open-studio-tickets-677178628507. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/lux-saber-corps-open-studio-tickets-677178628507. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/lux-saber-corps-open-studio-tickets-677178628507. Error: 'NoneType' object has no attribute 'get_text'
+URL parser failure for https://www.eventbrite.com/e/lux-saber-corps-open-studio-tickets-677178628507
+ValueError occurred for url 862. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 862. Error: Failed to parse date:  
+ValueError occurred for url 862. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 862. Error: Failed to parse date:  
+ValueError occurred for url 862. Error: Failed to parse date:  
+ValueError occurred for url 862. Error: Failed to parse date:  
+ValueError occurred for url 862. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 862. Error: Failed to parse date:  
+ValueError occurred for url 862. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 862. Error: Event details extraction failed. Retrying...
+Error in URl parser for https://www.eventbrite.com/e/mental-health-comedy-hour-tickets-619554352747. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/mental-health-comedy-hour-tickets-619554352747. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/mental-health-comedy-hour-tickets-619554352747. Error: 'NoneType' object has no attribute 'get_text'
+URL parser failure for https://www.eventbrite.com/e/mental-health-comedy-hour-tickets-619554352747
+Error in URl parser for https://www.eventbrite.nl/e/tickets-agape-temple-global-ministry-global-divine-healing-conference-sept-1-3-666517962167. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.nl/e/tickets-agape-temple-global-ministry-global-divine-healing-conference-sept-1-3-666517962167. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.nl/e/tickets-agape-temple-global-ministry-global-divine-healing-conference-sept-1-3-666517962167. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.nl/e/tickets-agape-temple-global-ministry-global-divine-healing-conference-sept-1-3-666517962167
+Error in URl parser for https://www.eventbrite.nl/e/international-womens-retreat-2023-he-restores-my-soul-tickets-644385042007. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.nl/e/international-womens-retreat-2023-he-restores-my-soul-tickets-644385042007. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.nl/e/international-womens-retreat-2023-he-restores-my-soul-tickets-644385042007. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.nl/e/international-womens-retreat-2023-he-restores-my-soul-tickets-644385042007
+Error in URl parser for https://www.eventbrite.nl/e/tickets-walk-in-urban-sustainable-wine-tastings-484267195217. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.nl/e/tickets-walk-in-urban-sustainable-wine-tastings-484267195217. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.nl/e/tickets-walk-in-urban-sustainable-wine-tastings-484267195217. Error: 'NoneType' object has no attribute 'get_text'
+URL parser failure for https://www.eventbrite.nl/e/tickets-walk-in-urban-sustainable-wine-tastings-484267195217
+Error in URl parser for https://www.eventbrite.com/e/foodhack-boston-save-the-date-tickets-685347130717. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/foodhack-boston-save-the-date-tickets-685347130717. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/foodhack-boston-save-the-date-tickets-685347130717. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/foodhack-boston-save-the-date-tickets-685347130717
+Error in URl parser for https://www.eventbrite.com/e/relax-reflect-rejuvenate-an-autumn-retreat-for-women-tickets-598195517897. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/relax-reflect-rejuvenate-an-autumn-retreat-for-women-tickets-598195517897. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/relax-reflect-rejuvenate-an-autumn-retreat-for-women-tickets-598195517897. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/relax-reflect-rejuvenate-an-autumn-retreat-for-women-tickets-598195517897
+Error in URl parser for https://www.eventbrite.com/e/handmade-artisan-store-at-burncoat-center-for-arts-and-wellness-worcester-tickets-580770689767. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/handmade-artisan-store-at-burncoat-center-for-arts-and-wellness-worcester-tickets-580770689767. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/handmade-artisan-store-at-burncoat-center-for-arts-and-wellness-worcester-tickets-580770689767. Error: 'NoneType' object has no attribute 'get_text'
+URL parser failure for https://www.eventbrite.com/e/handmade-artisan-store-at-burncoat-center-for-arts-and-wellness-worcester-tickets-580770689767
+ValueError occurred for url 971. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 971. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 971. Error: Event details extraction failed. Retrying...
+Error in URl parser for https://www.eventbrite.com/e/fast-to-health-mastering-intermittent-fasting-for-weight-loss-and-wellnes-tickets-688808142697. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/fast-to-health-mastering-intermittent-fasting-for-weight-loss-and-wellnes-tickets-688808142697. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/fast-to-health-mastering-intermittent-fasting-for-weight-loss-and-wellnes-tickets-688808142697. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/fast-to-health-mastering-intermittent-fasting-for-weight-loss-and-wellnes-tickets-688808142697
+Error in URl parser for https://www.eventbrite.com/e/2023-parliament-of-the-worlds-religions-tickets-637599887427. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/2023-parliament-of-the-worlds-religions-tickets-637599887427. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/2023-parliament-of-the-worlds-religions-tickets-637599887427. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/2023-parliament-of-the-worlds-religions-tickets-637599887427
+OpenAI api error occurred for url 1016. Error: Bad gateway. {"error":{"code":502,"message":"Bad gateway.","param":null,"type":"cf_bad_gateway"}} 502 {'error': {'code': 502, 'message': 'Bad gateway.', 'param': None, 'type': 'cf_bad_gateway'}} {'Date': 'Sun, 30 Jul 2023 23:34:48 GMT', 'Content-Type': 'application/json', 'Content-Length': '84', 'Connection': 'keep-alive', 'X-Frame-Options': 'SAMEORIGIN', 'Referrer-Policy': 'same-origin', 'Cache-Control': 'private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0', 'Expires': 'Thu, 01 Jan 1970 00:00:01 GMT', 'Server': 'cloudflare', 'CF-RAY': '7ef1627c1d1618ae-EWR', 'alt-svc': 'h3=":443"; ma=86400'}
+Error in URl parser for https://www.eventbrite.com/e/qualities-of-the-empowered-soul-never-be-lonely-again-tickets-688837961887. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/qualities-of-the-empowered-soul-never-be-lonely-again-tickets-688837961887. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/qualities-of-the-empowered-soul-never-be-lonely-again-tickets-688837961887. Error: 'NoneType' object has no attribute 'get_text'
+URL parser failure for https://www.eventbrite.com/e/qualities-of-the-empowered-soul-never-be-lonely-again-tickets-688837961887
+Error in URl parser for https://www.eventbrite.com/e/registering-interest-in-i-go-30th-anniversary-celebration-tickets-516980200697. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/registering-interest-in-i-go-30th-anniversary-celebration-tickets-516980200697. Error: 'NoneType' object is not subscriptable
+Error in URl parser for https://www.eventbrite.com/e/registering-interest-in-i-go-30th-anniversary-celebration-tickets-516980200697. Error: 'NoneType' object is not subscriptable
+URL parser failure for https://www.eventbrite.com/e/registering-interest-in-i-go-30th-anniversary-celebration-tickets-516980200697
+PastDateError occurred for url 1065. Error: Skipping event due to date 2023-01-01 00:00:00 occurring in the past
+Error in URl parser for https://www.eventbrite.com/e/pop-up-shop-cobbler-bushwick-co-tickets-680615889447. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/pop-up-shop-cobbler-bushwick-co-tickets-680615889447. Error: 'NoneType' object has no attribute 'get_text'
+Error in URl parser for https://www.eventbrite.com/e/pop-up-shop-cobbler-bushwick-co-tickets-680615889447. Error: 'NoneType' object has no attribute 'get_text'
+URL parser failure for https://www.eventbrite.com/e/pop-up-shop-cobbler-bushwick-co-tickets-680615889447
+ValueError occurred for url 1192. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1192. Error: Event details extraction failed. Retrying...
+PastDateError occurred for url 1308. Error: Skipping event due to date 2021-05-07 15:00:00 occurring in the past
+General Error occurred for url 1309. Error: can't compare offset-naive and offset-aware datetimes
+AddressParseError occurred for url 1309. Error: Failed to parse address: film@nypan.org
+ValueError occurred for url 1309. Error: Event details extraction failed. Retrying...
+AddressParseError occurred for url 1309. Error: Failed to parse address: film@nypan.org
+ValueError occurred for url 1309. Error: Event details extraction failed. Retrying...
+AddressParseError occurred for url 1309. Error: Failed to parse address: N/A
+AddressParseError occurred for url 1309. Error: Failed to parse address: film@nypan.org
+ValueError occurred for url 1309. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1310. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1310. Error: Event details extraction failed. Retrying...
+AddressParseError occurred for url 1310. Error: Failed to parse address: NYC
+AddressParseError occurred for url 1310. Error: Failed to parse address: New York City
+PastDateError occurred for url 1310. Error: Skipping event due to date 2021-09-17 13:00:00 occurring in the past
+ValueError occurred for url 1311. Error: Event details extraction failed. Retrying...
+AddressParseError occurred for url 1311. Error: Failed to parse address: Syracuse, NY
+ValueError occurred for url 1311. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1311. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1311. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1311. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1311. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1311. Error: Event details extraction failed. Retrying...
+AddressParseError occurred for url 1311. Error: Failed to parse address:  Syracuse, NY
+ValueError occurred for url 1311. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1312. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1312. Error: Event details extraction failed. Retrying...
+PastDateError occurred for url 1312. Error: Skipping event due to date 2022-11-17 18:30:00 occurring in the past
+PastDateError occurred for url 1313. Error: Skipping event due to date 2023-07-15 12:00:00 occurring in the past
+PastDateError occurred for url 1314. Error: Skipping event due to date 2022-09-16 16:00:00 occurring in the past
+PastDateError occurred for url 1315. Error: Skipping event due to date 2022-10-11 18:30:00 occurring in the past
+PastDateError occurred for url 1316. Error: Skipping event due to date 2022-09-30 16:00:00 occurring in the past
+PastDateError occurred for url 1317. Error: Skipping event due to date 2022-10-01 10:30:00 occurring in the past
+PastDateError occurred for url 1318. Error: Skipping event due to date 2023-03-24 13:00:00 occurring in the past
+PastDateError occurred for url 1319. Error: Skipping event due to date 2022-09-23 16:00:00 occurring in the past
+PastDateError occurred for url 1320. Error: Skipping event due to date 2022-10-22 11:00:00 occurring in the past
+PastDateError occurred for url 1321. Error: Skipping event due to date 2022-11-09 09:00:00 occurring in the past
+ValueError occurred for url 1322. Error: Event details extraction failed. Retrying...
+PastDateError occurred for url 1322. Error: Skipping event due to date 2023-05-18 18:00:00 occurring in the past
+ValueError occurred for url 1323. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1323. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1323. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1323. Error: Failed to parse date: Not specified
+ValueError occurred for url 1323. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1323. Error: Failed to parse date:  Month Day, Year, Hour:Minute AM/PM
+ValueError occurred for url 1323. Error: Failed to parse date: -End datetime of the event: 
+ValueError occurred for url 1323. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1323. Error: Event details extraction failed. Retrying...
+ValueError occurred for url 1323. Error: Event details extraction failed. Retrying...
+Error fetching https://www.weact.org/event/climate-ready-uptown-plan-inwood-emergency-preparedness-workshop/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/climate-ready-uptown-plan-inwood-emergency-preparedness-workshop/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/climate-ready-uptown-plan-inwood-emergency-preparedness-workshop/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/climate-ready-uptown-plan-inwood-emergency-preparedness-workshop/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/climate-ready-uptown-plan-inwood-emergency-preparedness-workshop/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/climate-ready-uptown-plan-inwood-emergency-preparedness-workshop/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/climate-ready-uptown-plan-inwood-emergency-preparedness-workshop/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/climate-ready-uptown-plan-inwood-emergency-preparedness-workshop/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/climate-ready-uptown-plan-inwood-emergency-preparedness-workshop/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/climate-ready-uptown-plan-inwood-emergency-preparedness-workshop/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Failure fetching https://www.weact.org/event/climate-ready-uptown-plan-inwood-emergency-preparedness-workshop/.
+Error fetching https://www.weact.org/event/new-member-orientation-august-2023/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/new-member-orientation-august-2023/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/new-member-orientation-august-2023/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/new-member-orientation-august-2023/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/new-member-orientation-august-2023/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/new-member-orientation-august-2023/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/new-member-orientation-august-2023/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/new-member-orientation-august-2023/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/new-member-orientation-august-2023/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/new-member-orientation-august-2023/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Failure fetching https://www.weact.org/event/new-member-orientation-august-2023/.
+Error fetching https://www.weact.org/event/we-acts-2023-annual-gala-celebrating-our-35th-anniversary/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/we-acts-2023-annual-gala-celebrating-our-35th-anniversary/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/we-acts-2023-annual-gala-celebrating-our-35th-anniversary/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/we-acts-2023-annual-gala-celebrating-our-35th-anniversary/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/we-acts-2023-annual-gala-celebrating-our-35th-anniversary/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/we-acts-2023-annual-gala-celebrating-our-35th-anniversary/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/we-acts-2023-annual-gala-celebrating-our-35th-anniversary/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/we-acts-2023-annual-gala-celebrating-our-35th-anniversary/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/we-acts-2023-annual-gala-celebrating-our-35th-anniversary/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/we-acts-2023-annual-gala-celebrating-our-35th-anniversary/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Failure fetching https://www.weact.org/event/we-acts-2023-annual-gala-celebrating-our-35th-anniversary/.
+Error fetching https://www.weact.org/event/demystifying-grassroot-work-through-the-lens-of-legal-standing-and-community-engagement/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/demystifying-grassroot-work-through-the-lens-of-legal-standing-and-community-engagement/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/demystifying-grassroot-work-through-the-lens-of-legal-standing-and-community-engagement/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/demystifying-grassroot-work-through-the-lens-of-legal-standing-and-community-engagement/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/demystifying-grassroot-work-through-the-lens-of-legal-standing-and-community-engagement/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/demystifying-grassroot-work-through-the-lens-of-legal-standing-and-community-engagement/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/demystifying-grassroot-work-through-the-lens-of-legal-standing-and-community-engagement/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/demystifying-grassroot-work-through-the-lens-of-legal-standing-and-community-engagement/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/demystifying-grassroot-work-through-the-lens-of-legal-standing-and-community-engagement/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/demystifying-grassroot-work-through-the-lens-of-legal-standing-and-community-engagement/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Failure fetching https://www.weact.org/event/demystifying-grassroot-work-through-the-lens-of-legal-standing-and-community-engagement/.
+Error fetching https://www.weact.org/event/community-picnic-with-nyc-council-member-carmen-de-la-rosa/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/community-picnic-with-nyc-council-member-carmen-de-la-rosa/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/community-picnic-with-nyc-council-member-carmen-de-la-rosa/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/community-picnic-with-nyc-council-member-carmen-de-la-rosa/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/community-picnic-with-nyc-council-member-carmen-de-la-rosa/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/community-picnic-with-nyc-council-member-carmen-de-la-rosa/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/community-picnic-with-nyc-council-member-carmen-de-la-rosa/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/community-picnic-with-nyc-council-member-carmen-de-la-rosa/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/community-picnic-with-nyc-council-member-carmen-de-la-rosa/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/community-picnic-with-nyc-council-member-carmen-de-la-rosa/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Failure fetching https://www.weact.org/event/community-picnic-with-nyc-council-member-carmen-de-la-rosa/.
+Error fetching https://www.weact.org/event/communicating-environmental-science-comunicando-ciencia-ambiental-we-act-101/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/communicating-environmental-science-comunicando-ciencia-ambiental-we-act-101/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/communicating-environmental-science-comunicando-ciencia-ambiental-we-act-101/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/communicating-environmental-science-comunicando-ciencia-ambiental-we-act-101/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/communicating-environmental-science-comunicando-ciencia-ambiental-we-act-101/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/communicating-environmental-science-comunicando-ciencia-ambiental-we-act-101/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/communicating-environmental-science-comunicando-ciencia-ambiental-we-act-101/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/communicating-environmental-science-comunicando-ciencia-ambiental-we-act-101/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/communicating-environmental-science-comunicando-ciencia-ambiental-we-act-101/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Error fetching https://www.weact.org/event/communicating-environmental-science-comunicando-ciencia-ambiental-we-act-101/. Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Failure fetching https://www.weact.org/event/communicating-environmental-science-comunicando-ciencia-ambiental-we-act-101/.
+Error in relevance check iteration. Error: Received a different number of results than expected. Please check the model's responses.
+Error in relevance check iteration. Error: Received a different number of results than expected. Please check the model's responses.

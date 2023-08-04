@@ -78,7 +78,7 @@ def export_data_to_csv(filters=None):
 
 filters = {
     "city": "NYC",  # Export only events from 'NYC'.
-    #"date_range": ("2023-07-30", "2023-08-05"),
+    "date_range": ("2023-07-30", "2023-08-20"),
 }
 
 export_data_to_csv(filters)
